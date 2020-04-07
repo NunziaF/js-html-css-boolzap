@@ -31,6 +31,8 @@ body {
   background: green;
 }
 
+/* Parte sinistra top*/
+
 .sx-top {
   width: 100%;
 	height: 70px;
@@ -44,12 +46,14 @@ body {
 	height: 50px;
 	margin: 10px 0 auto 10px;
 	border-radius: 100%;
+  cursor: pointer;
 }
 
 .icone i {
 	margin: auto 10px;
 	color: rgb(177, 177, 177);
 	font-size: 22px;
+  cursor: pointer;
 }
 
 .avatar {
@@ -59,10 +63,46 @@ body {
 
 .icone {
   display: flex;
-  cursor: pointer;
   width: 40%;
   height: 100%;
   float: right;
+}
+
+/* Parte sinistra notifiche*/
+
+.sx-notifiche {
+	display: flex;
+	width: 100%;
+	height: 80px;
+	background: #8EDAFC;
+}
+
+.sx-notifiche .logo {
+  width: 50px;
+  margin: auto 0 auto 20px;
+  background: #F2FBFF;
+  border-radius: 100%;
+  text-align: center;
+  color: #8EDAFC;
+  line-height: 50px;
+  font-size: 20px;
+}
+
+.sx-notifiche .testo {
+	width: calc(100% - 50px);
+	margin: auto;
+	padding: 0 10px;
+}
+
+.sx-notifiche .testo h3{
+  margin: 0;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+.sx-notifiche .testo a {
+  color: #4F7485;
+	font-size: 13.5px;
 }
 
 /*Parte destra*/
