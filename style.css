@@ -18,7 +18,6 @@ body {
 	width: 80%;
 	min-width: 900px;
 	height: 95%;
-  background-color: red;
 }
 
 /*Parte sinistra*/
@@ -220,4 +219,50 @@ body {
   width: auto;
   margin-right: 15px;
   text-align: right;
+}
+
+/*Parte destra contenitore messaggi*/
+
+.dx-messaggi-contenitore {
+	width: 100%;
+	height: calc(100% - 70px - 70px);
+}
+.dx-conversazione {
+	height: 100%;
+	width: 100%;
+	padding: 5% 10%;
+	background-image: url('img/sfondo.jpg');
+	overflow-y: scroll;
+}
+
+.messaggio {
+  position: relative;
+	margin: 5px 0;
+	padding: 0 15px;
+	min-width: 20%;
+	max-width: 60%;
+	background: #fff;
+	border-radius: 10px;
+	font-size: 15px;
+}
+
+.messaggio h3 {
+  font-size: 15px;
+	font-weight: normal;
+  margin-bottom: 0;
+}
+
+.messaggio.ricevuto {
+  background: white;
+  float: left;
+  clear: both;
+}
+
+.messaggio .ora{
+  margin-top: 2px;
+  font-size: 10px;
+}
+
+.messaggio .ora h2{
+  font-size: 10px;
 }
