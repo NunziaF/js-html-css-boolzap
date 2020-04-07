@@ -28,7 +28,6 @@ body {
 	height: 100%;
   width: 35%;
   border-right: 1px solid #D6D6D6;
-  background: green;
 }
 
 /* Parte sinistra top*/
@@ -140,6 +139,65 @@ body {
 	border-bottom: 1px solid #F5F5F5;
 	border-radius: 0px 3px 3px 0;
 	color: #B6B9BB;
+}
+
+/*Parte sinistra contatti*/
+
+.contatti {
+	width: 100%;
+	height: calc(100% - 70px - 50px - 80px);
+	background: #fff;
+	overflow-y: scroll;
+}
+
+.conversazione {
+  display: flex;
+	cursor: pointer;
+	width: 100%;
+	height: 80px;
+	border-bottom: 1px solid #F5F5F5;
+}
+
+.conversazione:hover {
+	background: #f4f5f5;
+}
+
+.contatti-avatar {
+  width: 60px;
+	height: 60px;
+	margin: auto 20px;
+	border-radius: 100%;
+	overflow: hidden;
+}
+
+.contatti-avatar img {
+  width: 100%;
+  height: 100%;
+}
+
+.contatti-info{
+  width: calc(100% - 100px);
+	height: 60px;
+	margin: auto 10px auto 0;
+	line-height: 5px;
+}
+
+.contatti-info h3{
+  font-size: 17px;
+	font-weight: normal;
+}
+
+.contatti-info h2{
+  font-size: 13px;
+	font-weight: normal;
+  color: #B6B9BB;
+}
+
+.ora{
+  color: #B6B9BB;
+  font-size: 12px;
+  font-weight: lighter;
+  float: right;
 }
 
 /*Parte destra*/
