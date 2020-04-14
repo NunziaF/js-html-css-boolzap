@@ -24,4 +24,33 @@ $(document).ready(function() {
       }, 1000);
     });
 
+  //scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite
+
+
+  // filtro contatti
+      //gestirte evento su tastiera (oppure su click di bottone di input ricerca)
+    $('.search').keyup(
+
+      function ricercaContatti()  {
+
+        // salvarmi input utente in campo del filtro (stringa1)
+        var stringaRicerca = $(this).val().toLowerCase();
+
+        // selezionare tutti i blocchi di contatto e ciclare tra di essi (each())
+        $('.conversazione').each(function () {
+          //salvo in una var il valore del testo del nome nel contatto (stringa2)
+          var stringaNome = $(this).find('.nome').text().toLowerCase();
+          // confronto per vedere se la stringa inserita nell'input è inclusa nel nome del contatto
+          //stringa2.includes(stringa1)
+          if(stringaNome.includes(stringaRicerca)){
+          //se l'occorenza è stata trovata lascio il blocco di contatto visibile
+          $(this).show();
+          } else {
+          // altrimenti lo rendo non visibile (this)
+          $(this).hide();
+          }
+        });
+      }
+    );
+    
 });
