@@ -18,12 +18,12 @@ $(document).ready(function() {
     function invioSms() {
       var inputUtente = $('.msg').val();
       var msgInviato = ('<div class="messaggio inviato"><h3>' + inputUtente + '<h2 class="ora">05:23</h2></h3></div>');
-      $('.dx-conversazione').append(msgInviato);
+      $('.dx-conversazione.active').append(msgInviato);
 
       // Ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo
       setTimeout(function(){
         var msgRicevuto = ('<div class="messaggio ricevuto"><h3>ok<h2 class="ora">05:23</h2></h3></div>');
-        $('.dx-conversazione').append(msgRicevuto);
+        $('.dx-conversazione.active').append(msgRicevuto);
       }, 1000);
     });
 
