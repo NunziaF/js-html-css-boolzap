@@ -267,6 +267,12 @@ body {
   font-size: 10px;
 }
 
+.messaggio.inviato {
+  background: #D5F9BA;
+  float: right;
+  clear: both;
+}
+
 /*Footer*/
 
 .dx-footer {
