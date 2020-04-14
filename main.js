@@ -17,12 +17,12 @@ $(document).ready(function() {
   $('.icona-dx').click(
     function invioSms() {
       var inputUtente = $('.msg').val();
-      var msgInviato = ('<div class="messaggio inviato"><h3>' + inputUtente + '<h2 class="ora">05:23</h2></h3></div>');
+      var msgInviato = ('<div class="messaggio inviato"><h3>' + inputUtente + '<i class="msg-tendina fa fa-chevron-down"></i><h2 class="ora">05:23</h2></h3><div class="msg-opzione"><div class="msg-info">Info messaggio</div><div class="msg-cancella">Cancella messaggio</div></div></div>');
       $('.dx-conversazione.active').append(msgInviato);
 
       // Ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo
       setTimeout(function(){
-        var msgRicevuto = ('<div class="messaggio ricevuto"><h3>ok<h2 class="ora">05:23</h2></h3></div>');
+        var msgRicevuto = ('<div class="messaggio ricevuto"><h3>ok<i class="msg-tendina fa fa-chevron-down"></i><h2 class="ora">05:23</h2></h3><div class="msg-opzione"><div class="msg-info">Info messaggio</div><div class="msg-cancella">Cancella messaggio</div></div></div>');
         $('.dx-conversazione.active').append(msgRicevuto);
       }, 1000);
     });
@@ -66,5 +66,19 @@ $(document).ready(function() {
       $(".dx-conversazione[data-conversazione='" + dataAttr + "']").addClass("active");
     }
   )
+
+  // Cancella messaggio: cliccando sul messaggio appare un menu a tendina che permette di cancellare il messaggio selezionato
+
+  $('.msg-tendina').click(
+    function () {
+      $(".msg-opzione").toggleClass("active");
+    }
+  );
+
+  $('.msg-cancella').click(
+    function () {
+      $(this).closest(".messaggio").remove();
+    }
+  );
 
 });
