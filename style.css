@@ -233,6 +233,11 @@ body {
 	padding: 5% 10%;
 	background-image: url('img/sfondo.jpg');
 	overflow-y: scroll;
+	display: none;
+}
+
+.dx-conversazione.active {
+	display: block;
 }
 
 .messaggio {

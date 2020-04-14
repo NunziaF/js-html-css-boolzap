@@ -6,7 +6,10 @@
 // Risposta dall’interlocutore: ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo.
 // Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina)
 
-
+// Milestone 3:
+// Click sul contatto mostra la conversazione del contatto cliccato,
+// è possibile inserire nuovi messaggi per ogni conversazione
+// Cancella messaggio: cliccando sul messaggio appare un menu a tendina che permette di cancellare il messaggio selezionato
 
 $(document).ready(function() {
 
@@ -52,5 +55,16 @@ $(document).ready(function() {
         });
       }
     );
-    
+
+  // Click sul contatto mostra la conversazione del contatto cliccato
+  $('.conversazione').click(
+    function() {
+      $('.conversazione').removeClass("active");
+      $(this).addClass("active");
+      var dataAttr = $(this).data("conversazione");
+      $(".dx-conversazione").removeClass("active");
+      $(".dx-conversazione[data-conversazione='" + dataAttr + "']").addClass("active");
+    }
+  )
+
 });
