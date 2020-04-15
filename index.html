@@ -33,7 +33,7 @@
           <label for="">
             <i class="fa fa-search"></i>
           </label>
-          <input class=search type="text" name="" value="Cerca o inizia una nuova chat">
+          <input class=search type="text" name="" placeholder="Cerca o inizia una nuova chat">
         </div>
         <div class="contatti">
           <div class="conversazione active" data-conversazione="0">
@@ -158,7 +158,7 @@
           <div class="icona-sx">
 						<i class="far fa-smile"></i>
 					</div>
-          <input class=msg type="" name="" value="Scrivi un messaggio">
+          <input class=msg type="" name="" placeholder="Scrivi un messaggio">
 					<div class="icona-dx">
             <i class="fa fa-microphone" aria-hidden="true"></i>
           </div>
@@ -167,6 +167,22 @@
       </div>
     </div>
 
+    <script id="msg-template" type="text/x-handlebars-template">
+      <div class="messaggio {{msgInvRic}}">
+         <h3>
+           {{msgPH}}
+           <i class="msg-tendina fa fa-chevron-down"></i>
+           <h2 class="ora">05:23</h2>
+         </h3>
+         <div class="msg-opzione">
+           <div class="msg-info">Info messaggio
+           </div>
+           <div class="msg-cancella">Cancella messaggio
+           </div>
+         </div>
+      </div>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="main.js"></script>
   </body>

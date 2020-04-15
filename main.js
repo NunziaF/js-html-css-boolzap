@@ -1,29 +1,26 @@
-// Milestone 1:
-// Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) e dall’interlocutore (bianco) assegnando due classi CSS diverse (quindi tutto statico);
-// Aggiunta di un messaggio: l’utente scrive un testo nella parte bassa e cliccando invia il testo viene aggiunto al thread sopra, come messaggio verde
-
-// Milestone 2:
-// Risposta dall’interlocutore: ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo.
-// Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina)
-
-// Milestone 3:
-// Click sul contatto mostra la conversazione del contatto cliccato,
-// è possibile inserire nuovi messaggi per ogni conversazione
-// Cancella messaggio: cliccando sul messaggio appare un menu a tendina che permette di cancellare il messaggio selezionato
-
 $(document).ready(function() {
 
   // Al click dell'icona, viene generato un msg con l'input inserito
   $('.icona-dx').click(
     function invioSms() {
       var inputUtente = $('.msg').val();
-      var msgInviato = ('<div class="messaggio inviato"><h3>' + inputUtente + '<i class="msg-tendina fa fa-chevron-down"></i><h2 class="ora">05:23</h2></h3><div class="msg-opzione"><div class="msg-info">Info messaggio</div><div class="msg-cancella">Cancella messaggio</div></div></div>');
-      $('.dx-conversazione.active').append(msgInviato);
+
+      // inizializzazione template handlebars msg
+      var source = $('#msg-template').html();
+      var template = Handlebars.compile(source);
+
+      //Handlebars operations
+      var context = { "msgPH": inputUtente, "msgInvRic": "inviato"};
+      var html = template(context);
+
+      $('.dx-conversazione.active').append(html);
 
       // Ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo
       setTimeout(function(){
-        var msgRicevuto = ('<div class="messaggio ricevuto"><h3>ok<i class="msg-tendina fa fa-chevron-down"></i><h2 class="ora">05:23</h2></h3><div class="msg-opzione"><div class="msg-info">Info messaggio</div><div class="msg-cancella">Cancella messaggio</div></div></div>');
-        $('.dx-conversazione.active').append(msgRicevuto);
+        //Handlebars operations
+        var context = { "msgPH": "ok", "msgInvRic": "ricevuto"};
+        var html = template(context);
+        $('.dx-conversazione.active').append(html);
       }, 1000);
     });
 
