@@ -304,6 +304,7 @@ body {
 
 .msg-opzione.active {
 	display: block;
+	z-index: 999;
 }
 
 .msg-opzione.active > div {

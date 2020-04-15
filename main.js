@@ -67,17 +67,25 @@ $(document).ready(function() {
     }
   )
 
-  // Cancella messaggio: cliccando sul messaggio appare un menu a tendina che permette di cancellare il messaggio selezionato
+  // Cliccando sul messaggio appare un menu a tendina che permette di cancellare il messaggio selezionato
 
-  $('.msg-tendina').click(
+  $('.dx-conversazione').on("click", ".msg-tendina",
     function () {
-      $(".msg-opzione").toggleClass("active");
+
+      var msgInst = $(this).closest(".messaggio");
+
+      msgInst.siblings(".messaggio").find(".msg-opzione").removeClass("active"); //chiudo i msg opzione aperti rimuovendo classe active a tutti i fratelli
+
+      msgInst.find(".msg-opzione").toggleClass("active");
     }
   );
 
-  $('.msg-cancella').click(
+  // Cancella messaggio al click cancella messaggio
+
+  $('.dx-conversazione').on("click", ".msg-cancella",
     function () {
-      $(this).closest(".messaggio").remove();
+      var msgInst = $(this).closest(".messaggio");
+      msgInst.remove();
     }
   );
 
