@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+
+
+
+
   // Al click dell'icona, viene generato un msg con l'input inserito
   $('.icona-dx').click(
     function invioSms() {
@@ -21,8 +25,15 @@ $(document).ready(function() {
         var context = { "msgPH": "ok", "msgInvRic": "ricevuto"};
         var html = template(context);
         $('.dx-conversazione.active').append(html);
-      }, 1000);
-    });
+    }, 1000);
+  });
+
+    // invia messaggio alla pressione del tasto invio
+      $('.msg').keypress(function (e) {
+       if (e.which == 13) {
+           invioSms();
+       }
+      });
 
   //scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite
 
@@ -77,7 +88,7 @@ $(document).ready(function() {
     }
   );
 
-  // Cancella messaggio al click cancella messaggio
+  // Cancella messaggio
 
   $('.dx-conversazione').on("click", ".msg-cancella",
     function () {
