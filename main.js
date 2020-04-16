@@ -30,7 +30,7 @@ $(document).ready(function() {
   });
 
     // invia messaggio alla pressione del tasto invio
-      $('.msg').keypress(function (e) {
+      $('.msg input').keypress(function (e) {
        if (e.which == 13) {
            invioSms();
        }
@@ -67,12 +67,21 @@ $(document).ready(function() {
 
   // Click sul contatto mostra la conversazione del contatto cliccato
   $('.conversazione').click(
-    function() {
+    function selezionaContatto () {
       $('.conversazione').removeClass("active");
       $(this).addClass("active");
       var dataAttr = $(this).data("conversazione");
       $(".dx-conversazione").removeClass("active");
       $(".dx-conversazione[data-conversazione='" + dataAttr + "']").addClass("active");
+
+      // Modifica top in base alla chat selezionata
+      // avatar
+      var avatarContattoActive = $(".conversazione.active img").attr("src");
+      $(".avatar.chat img").attr('src', avatarContattoActive);
+
+      // nome
+      var nomeContattoActive = $(".conversazione.active").find(".nome").text();
+      $('.nome.cliccato').text(nomeContattoActive);
     }
   )
 
