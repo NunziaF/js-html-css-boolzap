@@ -1,30 +1,31 @@
 $(document).ready(function() {
 
-
-
-
-
   // Al click dell'icona, viene generato un msg con l'input inserito
   $('.icona-dx').click(
     function invioSms() {
       var inputUtente = $('.msg').val();
+
+      // Genero l'orario effettivo
+
+      var data = new Date();
+      var orario = data.getHours() + ":" + data.getMinutes();
 
       // inizializzazione template handlebars msg
       var source = $('#msg-template').html();
       var template = Handlebars.compile(source);
 
       //Handlebars operations
-      var context = { "msgPH": inputUtente, "msgInvRic": "inviato"};
-      var html = template(context);
+      var smsInviato = { "msgPH": inputUtente, "msgInvRic": "inviato", "ora": orario};
+      var htmlInviato = template(smsInviato);
 
-      $('.dx-conversazione.active').append(html);
+      $('.dx-conversazione.active').append(htmlInviato);
 
       // Ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo
       setTimeout(function(){
         //Handlebars operations
-        var context = { "msgPH": "ok", "msgInvRic": "ricevuto"};
-        var html = template(context);
-        $('.dx-conversazione.active').append(html);
+        var smsRicevuto = { "msgPH": "ok", "msgInvRic": "ricevuto", "ora": orario};
+        var htmlRicevuto = template(smsRicevuto);
+        $('.dx-conversazione.active').append(htmlRicevuto);
     }, 1000);
   });
 
@@ -35,8 +36,8 @@ $(document).ready(function() {
        }
       });
 
-  //scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite
 
+  //scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite
 
   // filtro contatti
       //gestirte evento su tastiera (oppure su click di bottone di input ricerca)
