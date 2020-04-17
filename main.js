@@ -1,13 +1,14 @@
 $(document).ready(function() {
 
+
+  // Genero l'orario effettivo
+  var data = new Date();
+  var orario = data.getHours() + ":" + data.getMinutes();
+
   // Al click dell'icona, viene generato un msg con l'input inserito
 
   function invioSms() {
     var inputUtente = $('.msg').val();
-
-    // Genero l'orario effettivo
-    var data = new Date();
-    var orario = data.getHours() + ":" + data.getMinutes();
 
     // inizializzazione template handlebars msg
     var source = $('#msg-template').html();
@@ -19,7 +20,8 @@ $(document).ready(function() {
 
     $('.dx-conversazione.active').append(htmlInviato);
 
-    $('.msg').val(""); //all'invio cancello il msg scritto
+    $('.msg').val(""); //all'invio, cancello il msg scritto
+
 
     // Ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo
     setTimeout(function(){
@@ -30,13 +32,14 @@ $(document).ready(function() {
     }, 1000);
 
 
+
   };
 
   $('.icona-dx').click(invioSms);
 
   // invia messaggio alla pressione del tasto invio
   $('.msg').keyup(function (e) {
-    console.log(e.which);
+
     if (e.which == 13) {
          invioSms();
     }
@@ -54,7 +57,7 @@ $(document).ready(function() {
         // salvami input utente in campo del filtro (stringa1)
         var stringaRicerca = $(this).val().toLowerCase();
 
-        // selezionare tutti i blocchi di contatto e ciclare tra di essi (each())
+        // seleziono tutti i blocchi di contatto e li ciclo tra di essi
         $('.conversazione').each(function () {
           //salvo in una var il valore del testo del nome nel contatto (stringa2)
           var stringaNome = $(this).find('.nome').text().toLowerCase();
@@ -88,6 +91,10 @@ $(document).ready(function() {
       // nome
       var nomeContattoActive = $(".conversazione.active").find(".nome").text();
       $('.nome.cliccato').text(nomeContattoActive);
+
+      //ultimo accesso
+      $(".contatti-info h2").text("Ultimo accesso oggi alle " + orario);
+
     }
   )
 
@@ -112,5 +119,7 @@ $(document).ready(function() {
       msgInst.remove();
     }
   );
+
+
 
 });
