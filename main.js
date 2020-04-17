@@ -1,40 +1,46 @@
 $(document).ready(function() {
 
   // Al click dell'icona, viene generato un msg con l'input inserito
-  $('.icona-dx').click(
-    function invioSms() {
-      var inputUtente = $('.msg').val();
 
-      // Genero l'orario effettivo
+  function invioSms() {
+    var inputUtente = $('.msg').val();
 
-      var data = new Date();
-      var orario = data.getHours() + ":" + data.getMinutes();
+    // Genero l'orario effettivo
+    var data = new Date();
+    var orario = data.getHours() + ":" + data.getMinutes();
 
-      // inizializzazione template handlebars msg
-      var source = $('#msg-template').html();
-      var template = Handlebars.compile(source);
+    // inizializzazione template handlebars msg
+    var source = $('#msg-template').html();
+    var template = Handlebars.compile(source);
 
+    //Handlebars operations
+    var smsInviato = { "msgPH": inputUtente, "msgInvRic": "inviato", "ora": orario};
+    var htmlInviato = template(smsInviato);
+
+    $('.dx-conversazione.active').append(htmlInviato);
+
+    $('.msg').val(""); //all'invio cancello il msg scritto
+
+    // Ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo
+    setTimeout(function(){
       //Handlebars operations
-      var smsInviato = { "msgPH": inputUtente, "msgInvRic": "inviato", "ora": orario};
-      var htmlInviato = template(smsInviato);
-
-      $('.dx-conversazione.active').append(htmlInviato);
-
-      // Ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo
-      setTimeout(function(){
-        //Handlebars operations
-        var smsRicevuto = { "msgPH": "ok", "msgInvRic": "ricevuto", "ora": orario};
-        var htmlRicevuto = template(smsRicevuto);
-        $('.dx-conversazione.active').append(htmlRicevuto);
+      var smsRicevuto = { "msgPH": "ok", "msgInvRic": "ricevuto", "ora": orario};
+      var htmlRicevuto = template(smsRicevuto);
+      $('.dx-conversazione.active').append(htmlRicevuto);
     }, 1000);
-  });
 
-    // invia messaggio alla pressione del tasto invio
-      $('.msg input').keypress(function (e) {
-       if (e.which == 13) {
-           invioSms();
-       }
-      });
+
+  };
+
+  $('.icona-dx').click(invioSms);
+
+  // invia messaggio alla pressione del tasto invio
+  $('.msg').keyup(function (e) {
+    console.log(e.which);
+    if (e.which == 13) {
+         invioSms();
+    }
+  });
 
 
   //scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite
@@ -45,7 +51,7 @@ $(document).ready(function() {
 
       function ricercaContatti()  {
 
-        // salvarmi input utente in campo del filtro (stringa1)
+        // salvami input utente in campo del filtro (stringa1)
         var stringaRicerca = $(this).val().toLowerCase();
 
         // selezionare tutti i blocchi di contatto e ciclare tra di essi (each())
